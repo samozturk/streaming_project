@@ -9,6 +9,7 @@ TABLE_ID = 'revised_raw'
 
 df = pd.read_csv('../kafka_data/revised.csv',  engine='pyarrow')
 df['time_ref'] = pd.to_datetime(df['time_ref'], format='%Y%m')
+df['value'] = df['value'].astype('float')
 # df['time_ref'] = df['time_ref'].astype('str')
 
 
