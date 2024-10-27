@@ -9,7 +9,10 @@ TABLE_ID = 'revised_raw'
 
 df = pd.read_csv('../kafka_data/revised.csv',  engine='pyarrow')
 df['time_ref'] = pd.to_datetime(df['time_ref'], format='%Y%m')
-df['value'] = df['value'].astype('float')
+# Clean and validate the value column
+df['value'] = pd.to_numeric(df['value'], errors='coerce')
+df = df.dropna(subset=['value'])  # Remove rows where value is null
+print(df.dtypes)
 # df['time_ref'] = df['time_ref'].astype('str')
 
 
@@ -35,7 +38,10 @@ table = bigquery.Table(table_ref, schema=schema)
 table = client.create_table(table, exists_ok=True)
 
 # Load DataFrame directly to BigQuery
-job_config = bigquery.LoadJobConfig()
+job_config = bigquery.LoadJobConfig(
+    schema=schema,
+    write_disposition='WRITE_TRUNCATE'
+)
 job = client.load_table_from_dataframe(
     df,
     table_ref,
