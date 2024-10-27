@@ -3,7 +3,7 @@ from pyspark.sql.functions import from_json, col
 from pyspark.sql.types import StructType, StructField, StringType, DoubleType, DateType
 
 
-PROJECT_ID = "my-project-1531821615974"
+PROJECT_ID = "our-bebop-431708-i3"
 DATASET_ID = "bcn"
 TABLE_ID = "revised_raw"
 
