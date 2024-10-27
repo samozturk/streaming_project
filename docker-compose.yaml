@@ -20,8 +20,8 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./kafka_data:/kafka/data
-      - ./kafka_code:/kafka/code
+      - ./kafka_data:/app/kafka_data
+      - ./kafka_code:/app/kafka_code
     networks:
       - sirlar
 

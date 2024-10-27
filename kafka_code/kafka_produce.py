@@ -14,7 +14,7 @@ producer_config = {
 producer = Producer(producer_config)
 
 # CSV file path
-csv_file_path = '../data/revised.csv'
+csv_file_path = '../kafka_data/revised.csv'
 
 # Function to delivery report (callback)
 def delivery_report(err, msg):

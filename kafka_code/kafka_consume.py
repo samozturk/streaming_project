@@ -2,7 +2,11 @@ from confluent_kafka import Consumer, KafkaError
 import json
 
 # Kafka configuration
-bootstrap_servers = 'localhost:9092'
+bootstrap_servers = 'kafka:9092'
+# bootstrap_servers = '127.0.0.1:9092'
+# bootstrap_servers = 'host.docker.internal:9092'
+# bootstrap_servers = '192.168.1.165:9092'
+
 topic_name = 'csvdatatopic'
 group_id = 'csv_data_consumer_group'
 
