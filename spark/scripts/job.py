@@ -57,19 +57,19 @@ parsed_df = parsed_df.withColumn("value", col("value").cast("double"))
 
 # Process the data as needed
 # For example, you can simply show the data:
-# query = parsed_df \
-#     .writeStream \
-#     .queryName("Kafka Read a.k.a Sirlar Stream") \
-#     .outputMode("append") \
-#     .format("console") \
-#     .start()
-# or write to bigquery
 query = parsed_df \
     .writeStream \
     .queryName("Kafka Read a.k.a Sirlar Stream") \
-    .foreachBatch(write_to_bigquery) \
     .outputMode("append") \
+    .format("console") \
     .start()
+# or write to bigquery
+# query = parsed_df \
+#     .writeStream \
+#     .queryName("Kafka Read a.k.a Sirlar Stream") \
+#     .foreachBatch(write_to_bigquery) \
+#     .outputMode("append") \
+#     .start()
 
 query.awaitTermination()
 
